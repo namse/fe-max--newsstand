@@ -1,0 +1,30 @@
+@use "color.scss";
+@use "font.scss";
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 930px;
+  height: 29px;
+  margin-top: 58px;
+
+  &-left {
+    display: flex;
+    align-items: center;
+
+    width: 136px;
+    padding: 0px;
+    gap: 8px;
+
+    @include font.Display;
+  }
+
+  &-right {
+    display: flex;
+    position: absolute;
+    right: 0;
+    color: color.$gray500;
+    @include font.BodyMD;
+  }
+}

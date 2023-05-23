@@ -1,0 +1,40 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
+
+@mixin Display {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.64px;
+}
+@mixin TitleMD {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.09px;
+}
+@mixin TitleSM {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.71px;
+}
+@mixin TitleXS {
+  font-size: 12px;
+  font-weight: Bold;
+  line-height: Auto;
+}
+@mixin BodyMD {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+@mixin BodySM {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.71px;
+}
+@mixin BodyXS {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.32px;
+}
+
+$Pretendard: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;

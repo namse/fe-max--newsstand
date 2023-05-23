@@ -1,0 +1,16 @@
+@use "color.scss";
+@use "font.scss";
+@use "reset.scss";
+
+@use "header.scss";
+@use "roller.scss";
+@use "total.scss";
+
+body {
+  font-family: font.$Pretendard;
+  padding: 0 175px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

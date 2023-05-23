@@ -1,0 +1,30 @@
+@use "color.scss";
+@use "font.scss";
+
+.news-roller {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+
+  height: 49px;
+
+  .press-name {
+    @include font.TitleSM;
+  }
+  .headline {
+    @include font.BodySM;
+    color: color.$gray500;
+  }
+
+  &-left,
+  &-right {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    width: 461px;
+    height: 49px;
+    border: 1px solid color.$gray100;
+    background-color: color.$off-white;
+  }
+}

@@ -1,0 +1,73 @@
+@use "color.scss";
+@use "font.scss";
+
+.total-media {
+  &__tab-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    gap: 644px;
+    width: 930px;
+    height: 24px;
+  }
+
+  .press-tab {
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+
+    width: 216px;
+    height: 22px;
+    &__total {
+      @include font.TitleMD;
+    }
+    &__my-subs {
+      @include font.BodyMD;
+      color: color.$gray200;
+    }
+  }
+
+  .view-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 24px;
+    gap: 8px;
+
+    &__list {
+      color: color.$gray100;
+    }
+    &__grid {
+      color: color.$primary;
+    }
+  }
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin-top: 24px;
+  border: 1px solid color.$gray100;
+  width: 930px;
+  height: 388px;
+
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: color.$white;
+    padding: 10px;
+    border: 1px solid color.$gray100;
+  }
+}
+
+.right-button {
+  display: flex;
+  position: relative;
+  left: 978px;
+  bottom: 215px;
+  // background-color: black;
+}
