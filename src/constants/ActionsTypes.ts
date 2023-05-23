@@ -1,0 +1,4 @@
+export const ActionTypes = {
+  STOP_ROLLING: "STOP_ROLLING",
+  RESUME_ROLLING: "RESUME_ROLLING"
+}
