@@ -1,5 +1,6 @@
 @use "color.scss";
 @use "font.scss";
+@use "animation.scss";
 
 .news-roller {
   display: flex;
@@ -11,9 +12,26 @@
   .press-name {
     @include font.TitleSM;
   }
+
   .headline {
     @include font.BodySM;
     color: color.$gray500;
+    height: 17px;
+    //overflow: hidden;
+
+    &-container-left,
+    &-container-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      // animation: moveVertically 1s;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      height: 17px;
+    }
   }
 
   &-left,

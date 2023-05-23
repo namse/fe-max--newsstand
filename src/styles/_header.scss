@@ -18,6 +18,8 @@
     gap: 8px;
 
     @include font.Display;
+
+    cursor: pointer;
   }
 
   &-right {
