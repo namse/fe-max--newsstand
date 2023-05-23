@@ -5,7 +5,14 @@ export class NewsHeader {
     this.app = document.querySelector("#app");
     this.date = this.getCurrentDate();
     this.createNewsHeader();
-    // const newsHeader = this.createNewsHeader();
+    this.setEvent();
+  }
+
+  setEvent() {
+    const newsStandLogo = document.querySelector(".header-left");
+    newsStandLogo?.addEventListener("click", () => {
+      location.reload();
+    });
   }
 
   createNewsHeader() {
