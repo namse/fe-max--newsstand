@@ -1,41 +1,23 @@
 import { NewsRollerContainer } from "./NewsRollerContainer";
 import { TopHeader } from "./TopHeader";
+import { div } from "./domdom/domdom";
 import { Headline } from "./types";
 
-type NewsStandProps = {
+export const NewsStand = ({
+  systemDate,
+  headlineLeft,
+  headlineRight,
+}: {
   systemDate: Date;
   headlineLeft: Headline;
   headlineRight: Headline;
-};
-
-export class NewsStand {
-  public readonly element: HTMLElement = document.createElement("div");
-  private readonly topHeader: TopHeader;
-  private readonly newsRollerContainer: NewsRollerContainer;
-
-  constructor(private props: NewsStandProps) {
-    this.topHeader = new TopHeader({
-      date: props.systemDate,
-    });
-    this.element.appendChild(this.topHeader.element);
-
-    this.newsRollerContainer = new NewsRollerContainer({
-      headlineLeft: props.headlineLeft,
-      headlineRight: props.headlineRight,
-    });
-    this.element.appendChild(this.newsRollerContainer.element);
-  }
-
-  render(props: NewsStandProps) {
-    this.topHeader.render({
-      date: props.systemDate,
-    });
-
-    this.newsRollerContainer.render({
-      headlineLeft: props.headlineLeft,
-      headlineRight: props.headlineRight,
-    });
-
-    this.props = props;
-  }
-}
+}) =>
+  div({}, [
+    TopHeader({
+      date: systemDate,
+    }),
+    NewsRollerContainer({
+      headlineLeft,
+      headlineRight,
+    }),
+  ]);
