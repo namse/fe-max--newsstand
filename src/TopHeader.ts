@@ -4,7 +4,7 @@ export const TopHeader = ({ date }: { date: Date }) =>
   header({}, [
     div({ className: "header-left" }, [
       img({ src: "/public/images/logo.svg" }),
-      div({}, ["뉴스스탠드"]),
+      div(["뉴스스탠드"]),
     ]),
     div({ className: "header-right" }, [getTimeString(date)]),
   ]);
