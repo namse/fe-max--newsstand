@@ -23,7 +23,7 @@ function sync({
   renderingTree: RenderingTree;
 }) {
   if (!target) {
-    return replace(getNewNode(renderingTree));
+    return replace(createNode(renderingTree));
   }
 
   if (typeof renderingTree === "string") {
@@ -33,30 +33,46 @@ function sync({
       }
       return;
     } else {
-      return replace(getNewNode(renderingTree));
+      return replace(createNode(renderingTree));
     }
   } else {
     if (target instanceof HTMLElement) {
       if (target.tagName !== renderingTree.tagName) {
-        return replace(getNewNode(renderingTree));
+        return replace(createNode(renderingTree));
       }
-      syncAttributes(target, renderingTree.attributes);
-      syncChildren(target, renderingTree.children);
+      syncElement(target, renderingTree);
     } else {
-      return replace(getNewNode(renderingTree));
+      return replace(createNode(renderingTree));
     }
   }
 }
 
-function getNewNode(renderingTree: RenderingTree): Node {
+function createNode(renderingTree: RenderingTree): Node {
   if (typeof renderingTree === "string") {
     return document.createTextNode(renderingTree);
   }
 
   const element = document.createElement(renderingTree.tagName);
+
+  if (renderingTree.use) {
+    const dispose = renderingTree.use();
+    if (dispose) {
+      element.addEventListener("DOMNodeRemovedFromDocument", () => {
+        dispose();
+      });
+    }
+  }
+
+  syncElement(element, renderingTree);
+  return element;
+}
+
+function syncElement(
+  element: HTMLElement,
+  renderingTree: Exclude<RenderingTree, string>
+) {
   syncAttributes(element, renderingTree.attributes);
   syncChildren(element, renderingTree.children);
-  return element;
 }
 
 function syncAttributes(
@@ -71,35 +87,29 @@ function syncAttributes(
 }
 
 function syncChildren(target: HTMLElement, children: RenderingTree[]) {
-  const removingChildren = [];
+  const removingChildrenCount = target.children.length - children.length;
+  for (let i = 0; i < removingChildrenCount; i++) {
+    target.lastChild!.remove();
+  }
 
-  const max = Math.max(target.children.length, children.length);
-
-  for (let i = 0; i < max; i++) {
-    const child = target.children[i] ?? null;
+  for (let i = 0; i < children.length; i++) {
+    const childNode = target.childNodes[i]!;
     const renderingTree = children[i];
 
     if (!renderingTree) {
-      if (child) {
-        removingChildren.push(child);
-      }
       continue;
     }
 
     sync({
-      target: child,
+      target: childNode,
       replace: (newNode) => {
-        if (child) {
-          target.replaceChild(newNode, child);
+        if (childNode) {
+          target.replaceChild(newNode, childNode);
         } else {
           target.appendChild(newNode);
         }
       },
       renderingTree,
     });
-  }
-
-  for (const child of removingChildren) {
-    target.removeChild(child);
   }
 }

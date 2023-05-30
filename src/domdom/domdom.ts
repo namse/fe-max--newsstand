@@ -1,10 +1,13 @@
 import { applyRenderingTreeToDom } from "./apply";
 
+type Use = () => (() => void) | undefined;
+
 export type RenderingTree =
   | {
       tagName: string;
       attributes: Record<string, string>;
       children: RenderingTree[];
+      use?: Use;
     }
   | string;
 
@@ -52,9 +55,10 @@ export function div(
   }
 
   return {
-    tagName: "div",
+    tagName: "DIV",
     attributes,
     children,
+    use: props?.use,
   };
 }
 
@@ -82,7 +86,7 @@ export function img(
   }
 
   return {
-    tagName: "img",
+    tagName: "IMG",
     attributes,
     children,
   };
@@ -113,7 +117,7 @@ export function header(
   }
 
   return {
-    tagName: "header",
+    tagName: "HEADER",
     attributes,
     children,
   };
