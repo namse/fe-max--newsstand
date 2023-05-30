@@ -5,6 +5,10 @@ import {
   getTypeOfRenderingTree,
 } from "./domdom";
 
+/**
+ * NOTE: I think disposing logic is not good enough for now.
+ * No guarantee that it dispose all previous rendering tree on current code.
+ */
 export function applyRenderingTreeToDom(
   root: HTMLElement,
   renderingTree: RenderingTree,
@@ -86,7 +90,7 @@ function sync({
             (d, i) => d !== renderingTree.dependencies[i]
           );
         if (isDependenciesChanged) {
-          dispose(prevRenderingTree);
+          prevRenderingTree.dispose?.();
           renderingTree.dispose = renderingTree.useFn() || undefined;
         } else {
           renderingTree.dispose = prevRenderingTree.dispose;
