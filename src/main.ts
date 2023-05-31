@@ -77,12 +77,16 @@ setUp<
     rightHeadlineIndex: 1,
     newsRollerTick: 0,
   },
-  (state) =>
-    NewsStand({
+  (state) => {
+    const newsStandRenderingTree = NewsStand({
       systemDate: state.systemDate,
       headlineLeft: state.headlines[state.leftHeadlineIndex]!,
       headlineRight: state.headlines[state.rightHeadlineIndex]!,
-    }),
+    });
+
+    console.log("newsStandRenderingTree", newsStandRenderingTree);
+    return newsStandRenderingTree;
+  },
   (state, action: Action) => {
     switch (action.type) {
       case "newsRollerTick":

@@ -80,7 +80,6 @@ export function use(fn: UseFn, dependencies: any[]): UseRenderingTree {
 
 type DivProps = {
   className?: string;
-  use?: () => (() => void) | undefined;
 };
 
 export function div(props: DivProps): ElementRenderingTree;

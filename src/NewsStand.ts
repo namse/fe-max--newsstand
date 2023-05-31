@@ -12,7 +12,7 @@ export const NewsStand = ({
   headlineLeft: Headline;
   headlineRight: Headline;
 }) =>
-  div({}, [
+  div([
     TopHeader({
       date: systemDate,
     }),

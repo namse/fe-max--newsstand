@@ -1,7 +1,7 @@
 import { div, header, img } from "./domdom/domdom";
 
 export const TopHeader = ({ date }: { date: Date }) =>
-  header({}, [
+  header([
     div({ className: "header-left" }, [
       img({ src: "/public/images/logo.svg" }),
       div(["뉴스스탠드"]),

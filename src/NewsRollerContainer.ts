@@ -12,6 +12,7 @@ export const NewsRollerContainer = ({
 }) =>
   use(() => {
     const rollingTimer = new RollingTimer();
+
     return () => {
       rollingTimer.destructor();
     };
