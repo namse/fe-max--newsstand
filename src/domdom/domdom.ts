@@ -59,23 +59,17 @@ export function setUp<TState, TAction>(
 }
 
 export function use(fn: UseFn, dependencies: any[]): UseRenderingTree {
-  const children: RenderingTree[] = [];
-
-  const self: UseRenderingTree = {
+  return {
     type: "use",
     dependencies,
     useFn: fn,
-    children,
+    children: [],
     use,
-    render: undefined as any as UseRenderingTree["render"],
+    render(renderingTree: RenderingTree) {
+      this.children = [renderingTree];
+      return this;
+    },
   };
-
-  self.render = (renderingTree: RenderingTree) => {
-    self.children = [renderingTree];
-    return self;
-  };
-
-  return self;
 }
 
 type DivProps = {
